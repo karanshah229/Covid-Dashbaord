@@ -1,28 +1,27 @@
 <nz-layout class="app-layout">
-  <nz-sider class="menu-sidebar"
-            nzCollapsible
-            nzWidth="256px"
-            nzBreakpoint="md"
-            [(nzCollapsed)]="isCollapsed"
-            [nzCollapsedWidth]="0"
-            [nzTrigger]="null">
-    <div class="sidebar-logo">
-      <a href="#">
-        <img src="assets/covid_logo.png" alt="logo">
-        <h1>Covid Dashboard</h1>
-      </a>
-    </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-menu-item nzMatchRouter>
-        <a routerLink="/covid-progress">COVID-19 Progress in India</a>
-      </li>
-      <li nz-menu-item nzMatchRouter>
-        <a routerLink="/places-stats">State and Disctrict Wise Stats</a>
-      </li>
-      <li nz-menu-item nzMatchRouter>
-        <a href="travel-history">Travel History</a>
-      </li>
-    </ul>
+  <nz-drawer
+    *ngIf="isHandset$ | async"
+    [nzBodyStyle]="{
+      height: '100%',
+      overflow: 'auto',
+      padding: '0',
+      background: '#021429'
+    }"
+    [nzClosable]="false"
+    [nzVisible]="!isCollapsed"
+    nzPlacement="left"
+    (nzOnClose)="isCollapsed = true"
+  >
+    <app-side-menu></app-side-menu>
+  </nz-drawer>
+  <nz-sider *ngIf="!(isHandset$ | async)"
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="lg"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <app-side-menu [isCollapsed]="isCollapsed"></app-side-menu>
   </nz-sider>
   <nz-layout>
     <nz-header>
@@ -30,7 +29,7 @@
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
             <i class="trigger"
                nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+               [nzType]="isCollapsed ? 'menu' : 'menu'"
             ></i>
         </span>
       </div>
