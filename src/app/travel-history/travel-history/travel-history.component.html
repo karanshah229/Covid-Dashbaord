@@ -1,0 +1,41 @@
+<div> Many people travelled before the outbreak of CoronaVirus unknowingly and hence have affefcted many others. Here, we give all the information available on such travellers. Use the search box below to narrow it down to your area. </div>
+<div> Some data is missing. Please refrain from making assumptions about it.</div><br>
+
+<nz-input-group [nzPrefix]="suffixIconSearch">
+  <input type="text" nz-input placeholder="Search your Locality" />
+</nz-input-group>
+<ng-template #suffixIconSearch><i nz-icon nzType="search"></i></ng-template>
+
+<nz-table
+  #dynamicTable
+  [nzData]="travelHistory"
+  [nzLoading]="tableLoading"
+  [nzBordered]="true"
+  [nzFrontPagination]="true"
+  [nzShowPagination]="true"
+  [nzSize]="middle"
+  [nzPageSize]=6
+  [nzWidthConfig]="fixed">
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Place Name</th>
+      <th>Type</th>
+      <th>Mode of Travel</th>
+      <th>Accuracy</th>
+      <th>Arrival Date</th>
+      <th>Arrival Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of dynamicTable.data; let i = index">
+      <td>{{data.address | titlecase}}</td>
+      <td>{{data.placename | titlecase}}</td>
+      <td>{{data.type | titlecase}}</td>
+      <td>{{data.modeoftravel | titlecase}}</td>
+      <td>{{data.accuracylocation | titlecase}}</td>
+      <td>{{data.date | titlecase}}</td>
+      <td>{{data.time | titlecase}}</td>
+    </tr>
+  </tbody>
+</nz-table>

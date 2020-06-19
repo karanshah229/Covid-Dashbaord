@@ -25,18 +25,20 @@
   </nz-sider>
   <nz-layout>
     <nz-header>
-      <div class="app-header">
+      <div class="app-header" nz-row nzJustify="space-around" nzAlign="middle">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
             <i class="trigger"
                nz-icon
                [nzType]="isCollapsed ? 'menu' : 'menu'"
             ></i>
         </span>
+        <span>Hello</span>
       </div>
     </nz-header>
     <nz-content>
       <div class="inner-content">
-        <router-outlet></router-outlet>
+        <nz-spin nzSimple [nzSize]="'large'" *ngIf="isLoading"></nz-spin>
+        <router-outlet *ngIf="!isLoading"></router-outlet>
       </div>
     </nz-content>
   </nz-layout>
