@@ -57,7 +57,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let data of dynamicTable.nzData">
-          <td>{{ data.state }}</td>
+          <td><a href="/places-stats/{{data.state}}">{{ data.state }}</a></td>
           <td>{{ data.confirmed }}</td>
           <td>{{ data.active }}</td>
           <td>{{ data.recovered }}</td>
