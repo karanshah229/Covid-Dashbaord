@@ -2,7 +2,7 @@
 <div> Some data is missing. Please refrain from making assumptions about it.</div><br>
 
 <nz-input-group [nzPrefix]="suffixIconSearch">
-  <input type="text" nz-input placeholder="Search your Locality" />
+  <input type="text" nz-input placeholder="Search your Locality" (keyup)="applyFilter($event)" />
 </nz-input-group>
 <ng-template #suffixIconSearch><i nz-icon nzType="search"></i></ng-template>
 
@@ -13,9 +13,10 @@
   [nzBordered]="true"
   [nzFrontPagination]="true"
   [nzShowPagination]="true"
-  [nzSize]="middle"
-  [nzPageSize]=6
-  [nzWidthConfig]="fixed">
+  nzSize="middle"
+  [nzPageSize]=7
+  [nzScroll]="{ x: '200px' }"
+  nzWidthConfig="fixed">
   <thead>
     <tr>
       <th>Address</th>
@@ -31,9 +32,9 @@
     <tr *ngFor="let data of dynamicTable.data; let i = index">
       <td>{{data.address | titlecase}}</td>
       <td>{{data.placename | titlecase}}</td>
-      <td>{{data.type | titlecase}}</td>
+      <td fxShow.md>{{data.type | titlecase}}</td>
       <td>{{data.modeoftravel | titlecase}}</td>
-      <td>{{data.accuracylocation | titlecase}}</td>
+      <td fxShow.md>{{data.accuracylocation | titlecase}}</td>
       <td>{{data.date | titlecase}}</td>
       <td>{{data.time | titlecase}}</td>
     </tr>

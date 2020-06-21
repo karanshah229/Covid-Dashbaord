@@ -32,7 +32,8 @@
                [nzType]="isCollapsed ? 'menu' : 'menu'"
             ></i>
         </span>
-        <span>Hello</span>
+        <span><i nz-icon nzType="reload" nzTheme="outline" style="font-size: 20px; margin-right: 40%"></i></span>
+        <span>{{ app_header | async }}</span>
       </div>
     </nz-header>
     <nz-content>

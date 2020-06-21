@@ -16,6 +16,12 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+
+// External Libraries
+import { ChartsModule } from 'ng2-charts';
 
 // Components, Modules, etc.
 import { AppRoutingModule } from './app-routing.module';
@@ -41,7 +47,11 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     NzDrawerModule,
-    NzSpinModule
+    NzSpinModule,
+    NzGridModule,
+    NzInputModule,
+    NzAutocompleteModule,
+    ChartsModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

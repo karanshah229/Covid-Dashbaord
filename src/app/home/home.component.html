@@ -1,1 +1,11 @@
+<div>
+  <input placeholder="input here" nz-input (input)="onInput($event)" [nzAutocomplete]="auto" />
+  <nz-autocomplete [nzDataSource]="options" nzBackfill #auto></nz-autocomplete>
+</div>
+<ng-template #suffixIconSearch><i nz-icon nzType="search"></i></ng-template>
 <p>These many deaths, confirmed, active, etc. See the full progess - Link to TimeSeries Chart</p>
+
+<div nz-row>
+  <div nz-col nzFlex="6">1 / 2</div>
+  <div nz-col nzFlex="6">1 / 2</div>
+</div>

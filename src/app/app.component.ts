@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
-import { Router, NavigationError, NavigationStart, NavigationEnd, NavigationCancel } from '@angular/router';
+import { Router, NavigationError, NavigationStart, NavigationEnd, NavigationCancel, ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-root',
@@ -11,7 +11,8 @@ import { Router, NavigationError, NavigationStart, NavigationEnd, NavigationCanc
 })
 export class AppComponent {
 	isLoading: boolean = false;
-	isCollapsed = false;
+  isCollapsed = false;
+  app_header: Subject<string>
 
 	isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
 	.pipe(
@@ -20,7 +21,7 @@ export class AppComponent {
 
 	constructor(
 		private breakpointObserver: BreakpointObserver,
-		private router: Router
+    private router: Router,
 	) {
 		this.router.events.subscribe((event) => {
       switch (true) {
@@ -39,6 +40,7 @@ export class AppComponent {
           break;
         }
       }
+
     });
   }
 
