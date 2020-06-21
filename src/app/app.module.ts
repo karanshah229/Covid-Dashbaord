@@ -19,6 +19,10 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzTableModule } from 'ng-zorro-antd/table'
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 // External Libraries
 import { ChartsModule } from 'ng2-charts';
@@ -51,7 +55,11 @@ registerLocaleData(en);
     NzGridModule,
     NzInputModule,
     NzAutocompleteModule,
-    ChartsModule
+    ChartsModule,
+    NzTypographyModule,
+    NzCardModule,
+    NzTableModule,
+    NzDividerModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

@@ -29,7 +29,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of dynamicTable.data; let i = index">
+    <tr *ngFor="let data of dynamicTable.data">
       <td>{{data.address | titlecase}}</td>
       <td>{{data.placename | titlecase}}</td>
       <td fxShow.md>{{data.type | titlecase}}</td>
