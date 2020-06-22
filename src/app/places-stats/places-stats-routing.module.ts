@@ -5,7 +5,7 @@ import { PlacesStatsPlaceComponent } from './places-stats-place/places-stats-pla
 
 const routes: Routes = [
   { path: '', component: PlacesStatsComponent },
-  { path: ':state', component: PlacesStatsPlaceComponent }
+  { path: ':statecode', component: PlacesStatsPlaceComponent }
 ];
 
 @NgModule({

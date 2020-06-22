@@ -1,14 +1,23 @@
-<!-- <div nz-row *ngIf="stateData['District'].data.length">
-  <nz-table
+<nz-input-group [nzPrefix]="suffixIconSearch">
+  <input type="text" nz-input placeholder="Search your District" (keyup)="applyFilter($event)" />
+</nz-input-group>
+<ng-template #suffixIconSearch><i nz-icon nzType="search"></i></ng-template>
+
+<div nz-row *ngIf="stateData">
+  <div nz-col nzFlex="3">
+    <nz-table
       #dynamicTable
+      [nzPageSize]=10
+      [nzFrontPagination]="true"
+      [nzShowPagination]="true"
+      nzSize="middle"
       [nzData]="stateData"
       [nzLoading]="tableLoading"
       [nzBordered]="true"
-      nzSize="middle"
-      [nzShowPagination]="false"
       nzWidthConfig="fixed">
       <thead>
         <tr>
+          <th>Sr. No.</th>
           <th>Disctrict</th>
           <th>Confirmed</th>
           <th>Active</th>
@@ -17,13 +26,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let stateData of dynamicTable.nzData">
-          <td>{{ stateData['District'].data }}</td>
-          <td>{{ data.confirmed }}</td>
-          <td>{{ data.active }}</td>
-          <td>{{ data.recovered }}</td>
-          <td>{{ data.deaths }}</td>
+        <tr *ngFor="let stateData of dynamicTable.data; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ stateData['districtName'] }}</td>
+          <td>{{ stateData['confirmed'] }}</td>
+          <td>{{ stateData['active'] }}</td>
+          <td>{{ stateData['recovered'] }}</td>
+          <td>{{ stateData['deceased'] }}</td>
         </tr>
       </tbody>
     </nz-table>
-</div> -->
+  </div>
+</div>

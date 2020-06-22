@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StateDistrictWiseService } from '../services/state-district-wise.service';
-import { ChartDataSets } from 'chart.js';
 
 @Component({
   selector: 'app-places-stats-place',
@@ -9,20 +8,24 @@ import { ChartDataSets } from 'chart.js';
   styleUrls: ['./places-stats-place.component.scss']
 })
 export class PlacesStatsPlaceComponent implements OnInit {
-  state: string
+  stateCode: string
   tableLoading = true
 
-  stateData = {}
+  stateData
+  stateDataCopy
+  stateData_filtered
+  districts
+  districtData:Object[]
 
   constructor(
     private route: ActivatedRoute,
-    private stateDistrictWise: StateDistrictWiseService
+    private stateDistrictWise: StateDistrictWiseService,
+    private changeDetectorRef: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      this.state = params.get("state")
-      console.log(this.state)
+      this.stateCode = params.get("statecode")
     })
 
     this.showData()
@@ -32,10 +35,34 @@ export class PlacesStatsPlaceComponent implements OnInit {
     this.stateDistrictWise.getStateDistrictWise()
       .subscribe( (data:any) => {
         this.stateData = data
-        let test = Object.values(data[this.state])
-        console.log(this.stateData)
-        console.log(test)
+        this.stateData = Object.values(this.stateData).filter( (state:any) => state.statecode == this.stateCode)
+        this.stateData = this.stateData[0]['districtData']
+        this.districts = Object.keys(this.stateData)
+        this.districtData = Object.values(this.stateData)
+
+        this.stateData = []
+        for(let i = 0; i < this.districts.length; i++){
+          this.stateData.push({
+            districtName: this.districts[i],
+            ...this.districtData[i]
+          })
+        }
+        this.stateDataCopy = this.stateData
       })
+    this.tableLoading = false
+  }
+
+  async applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value.toString();
+    if(filterValue.toLowerCase() == '') this.stateData = await this.stateDataCopy
+    else {
+      this.stateData = this.stateDataCopy
+      this.stateData_filtered = await this.stateData.filter( (x:any) => {
+        return x['districtName'].toLowerCase().includes(filterValue.toLowerCase())
+      })
+      this.stateData = this.stateData_filtered
+    }
+    this.changeDetectorRef.detectChanges()
   }
 
 }
