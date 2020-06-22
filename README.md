@@ -2,7 +2,7 @@
 
 Data Visualization Project to show COVID-19 data in various forms.
 
-[Click here to visit the website](covid-19-dashboard.epizy.com)
+[Click here to visit the website](covid-19-dashboard.epizy.com) covid-19-dashboard.epizy.com  
 
 Screenshots:
 ![alt text](https://github.com/karanshah229/Covid-Dashbaord/blob/master/screenshots/home.png "Home")  
