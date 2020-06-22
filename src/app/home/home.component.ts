@@ -3,7 +3,6 @@ import { TimeSeriesStateWiseService } from 'src/services/time-series-state-wise.
 import TimeSeriesStateWiseServiceModel, { StateWise } from 'src/models/TimeSeriesStateWiseService.model';
 import { ChartDataSets } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
-import 'chartjs-plugin-zoom';
 
 @Component({
   selector: 'app-home',
