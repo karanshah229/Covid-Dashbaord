@@ -1,1 +1,23 @@
-<p>places-stats works!</p>
+<div nz-row>
+  <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select State to View District Statistics" [(ngModel)]="state">
+    <nz-option *ngFor="let state of states; let i = index" [nzLabel]="state" [nzValue]="stateCodes[i]"></nz-option>
+  </nz-select>
+  <button nz-button nzType="primary" style="width: 9.7%; margin-left: 1px" (click)="view_stats()">View Stats</button>
+</div><br>
+
+<div nz-row>
+  <h3>Top 3 States with most Cases</h3>
+  <nz-divider></nz-divider>
+</div>
+
+<div nz-row nzJustify="center">
+  <div style="display: block; width: 60%">
+    <!-- Highest State -->
+    <canvas baseChart
+      [datasets]="highestStateData"
+      [labels]="barChartLabels"
+      [options]="chartOptions"
+      chartType="bar">
+    </canvas>
+  </div>
+</div>

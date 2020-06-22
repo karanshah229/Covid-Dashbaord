@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
     console.log(event, active);
   }
 
-  top3_states = []
+  top3_states: any[] = []
   tableLoading = true
 
   doughnutChartLabels = ['Total Tested', 'Tested Positive'];
